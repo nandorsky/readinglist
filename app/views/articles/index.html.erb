@@ -1,27 +1,23 @@
-<h1>Listing articles</h1>
+<div class="rows">
+<h2>My Reading List</h2>
+<div class="add-btn">
+<%= link_to 'Add Article', new_article_path, class: "btn btn-success" %>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
+<div class="span6">
+<table class="table">
   <tbody>
     <% @articles.each do |article| %>
       <tr>
-        <td><a href="<%= article.description %>">Article</a></td>
+        <td><a href="<%= article.description %>" target="_blank"><%= article.description %></a></td>
         <!--<td><%= link_to 'Show', article %></td>-->
         <!--<td><%= link_to 'Edit', edit_article_path(article) %></td>-->
-        <td><%= link_to 'Read', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Remove', article, method: :delete, class: "btn btn-danger", data: { confirm: 'If you mark this as read it will remove is from your list' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
+</div>
 <br>
+</div>
 
-<%= link_to 'New Article', new_article_path %>

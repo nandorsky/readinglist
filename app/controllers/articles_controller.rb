@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+     @articles = Article.where( :user_id => current_user )
   end
 
   # GET /articles/1
@@ -26,7 +26,7 @@ class ArticlesController < ApplicationController
   def create
     @article = current_user.articles.build(article_params)
     if @article.save
-      redirect_to @article, notice: 'article was successfully created.'
+      redirect_to articles_url, notice: 'article was successfully created.'
     else
       render action: 'new'
     end
